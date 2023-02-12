@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .card-img-left{
+        @apply p-6 rounded-xl shrink-0 bg-white border-collapse border-emerald-200 border-2 hover:border-emerald-300 hover:shadow-xl max-w-sm shadow-lg flex items-center space-x-4;
+    }
+}

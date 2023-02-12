@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "tailwind": "bun tailwindcss -i ./public/src/style/input.css -o ./public/output.css --watch"
+    "tailwind": "bun tailwindcss -i ./public/src/style/input.css -o ./public/output.css --watch",
+    "npxtailwind": "npx tailwindcss -i ./public/src/style/input.css -o ./public/output.css --watch"
   },
   "devDependencies": {
     "tailwindcss": "^3.2.6"

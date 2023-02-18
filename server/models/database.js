@@ -22,15 +22,36 @@ export class Database {
     }
 
     async get_tables() {
-        return Promise.resolve()
-        let results = [];
-        let t = await this.#db.serialize(() => {
-            results.push( this.#db.each("SELECT * FROM 'users' WHERE username = 'maiki';", (err, row) => {
-                console.log(row);
-                return row;
-            }));
+        let result = [];
+        result = await this.get_users();
+        console.log(result);
+
+        return result;
+    }
+
+    getRecords(){
+        return new Promise((resolve,reject)=>{
+        db.all('SELECT * FROM langs ORDER BY name',[],(err,rows)=>{
+          if(err){
+              return console.error(err.message);
+          }
+          rows.forEach((row)=>{
+              data.push(row);
+          });
+          
+         resolve(data);
+      })
+        
+        })
+      }
+
+    get_users() {
+        return new Promise((resolve, reject) => {
+            this.#db.each("SELECT * FROM 'users' WHERE username = 'maiki';", (err, row) => {
+                result.push(row);
+            });
+            resolve(result);
         });
-        return results;
     }
 }
 

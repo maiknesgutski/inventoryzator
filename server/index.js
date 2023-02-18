@@ -18,9 +18,9 @@ app.listen(PORT, HOST, () => {
     console.log(`Listening on http://${HOST}:${PORT}`);
 });
 
-app.get('/ha', (req, res) => {
+app.get('/ha', async (req, res) => {
     let user = new User();
     console.log(user.rand_users.toString());
-    console.log(user.test_db_connection());
+    console.log(await user.test_db_connection());
     res.send(user.rand_users.toString())
 });

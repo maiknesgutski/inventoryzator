@@ -1,8 +1,8 @@
 'use strict';
 
-const express = require('express');
-const path = require('path');
-const fs = require('fs');
+import { User } from './models/user.js';
+import express from 'express';
+import path from 'path';
 
 // Constants
 const PORT = 9595;
@@ -16,4 +16,11 @@ app.use(express.static(path.resolve('public')));
 
 app.listen(PORT, HOST, () => {
     console.log(`Listening on http://${HOST}:${PORT}`);
+});
+
+app.get('/ha', (req, res) => {
+    let user = new User();
+    console.log(user.rand_users.toString());
+    console.log(user.test_db_connection());
+    res.send(user.rand_users.toString())
 });

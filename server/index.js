@@ -19,8 +19,7 @@ app.listen(PORT, HOST, () => {
 });
 
 app.get('/ha', async (req, res) => {
-    let user = new User();
-    console.log(user.rand_users.toString());
-    console.log(await user.test_db_connection());
+    let user = new User(true);
+    console.log(await user.get_all());
     res.send(user.rand_users.toString())
 });

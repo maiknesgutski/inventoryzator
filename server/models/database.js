@@ -4,6 +4,9 @@ export class Database {
 
     /**@var sqlite3.Database #db */
     #db = null;
+    #tables = new Map();
+
+
     constructor() {
         console.log(path.resolve("server/database/inventory.db"));
         this.#db = new sqlite3.Database(path.resolve("server/database/inventory.db"), (err) => {
@@ -21,36 +24,38 @@ export class Database {
         return this.#db;
     }
 
-    async get_tables() {
+    get tables() {
+        return this.#tables;
+    }
+
+    async set_tables() {
         let result = [];
         result = await this.get_users();
-        console.log(result);
 
         return result;
     }
 
-    getRecords(){
-        return new Promise((resolve,reject)=>{
-        db.all('SELECT * FROM langs ORDER BY name',[],(err,rows)=>{
-          if(err){
-              return console.error(err.message);
-          }
-          rows.forEach((row)=>{
-              data.push(row);
-          });
-          
-         resolve(data);
-      })
-        
-        })
-      }
-
-    get_users() {
+    /**
+     * Function to get all the entries to a query in a map.
+     * @param {string} query 
+     * @returns {Map<id, row>} Entries keyed with id in a map.
+     */
+    select(query) {
+        let data = new Map();
         return new Promise((resolve, reject) => {
-            this.#db.each("SELECT * FROM 'users' WHERE username = 'maiki';", (err, row) => {
-                result.push(row);
+            this.#db.all(query, [], (err, rows) => {
+
+                if (err) {
+                    reject(err);
+                    return console.log(err.message)
+                }
+
+                rows.forEach((row) => {
+                    data.set(row.id, row);
+                });
+
+                resolve(data);
             });
-            resolve(result);
         });
     }
 }

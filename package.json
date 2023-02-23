@@ -1,14 +1,23 @@
 {
+  "name": "inventor",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "tailwind": "bun tailwindcss -i ./public/src/style/input.css -o ./public/output.css --watch",
-    "npxtailwind": "npx tailwindcss -i ./public/src/style/input.css -o ./public/output.css --watch"
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.2.6"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "sqlite3": "^5.1.4"
-  },
-  "type": "module"
+    "@next/font": "13.1.6",
+    "@types/node": "18.14.1",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "eslint": "8.34.0",
+    "eslint-config-next": "13.1.6",
+    "next": "13.1.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "4.9.5"
+  }
 }
